@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import joblib
 import os
+import time
 
 st.set_page_config(page_title="Telco Customer Churn Prediction", layout="centered")
 
@@ -104,7 +105,13 @@ with tabs[0]:
 
     if submitted:
         input_df = preprocess_input()
-        prob = model.predict_proba(input_df)[0][1]
+        with st.spinner('Predicting...'):
+            progress = st.progress(0)
+            for percent in range(1, 101, 10):
+                time.sleep(0.05)
+                progress.progress(percent)
+            prob = model.predict_proba(input_df)[0][1]
+            progress.empty()
         st.subheader("Prediction Result")
         if prob > 0.7:
             st.markdown(f"<h2 style='color:red;'>🔴 High risk of churn! ({prob*100:.2f}%)</h2>", unsafe_allow_html=True)
