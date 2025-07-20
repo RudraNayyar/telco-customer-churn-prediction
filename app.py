@@ -7,7 +7,7 @@ import time
 
 st.set_page_config(page_title="Telco Customer Churn Prediction", layout="centered")
 
-# --- Sidebar ---
+
 st.sidebar.title("About This Project")
 st.sidebar.info(
     """
@@ -17,7 +17,7 @@ st.sidebar.info(
     """
 )
 
-# --- Load Model ---
+
 def load_model():
     model_path = os.path.join('models', 'churn_lightgbm_tuned.pkl')
     if not os.path.exists(model_path):
@@ -31,11 +31,11 @@ feature_names = joblib.load('models/feature_names.pkl')
 
 st.title("Telco Customer Churn Prediction")
 
-# --- Tabs for Single/Batch Prediction (future-proof) ---
+
 tabs = st.tabs(["Single Prediction", "About"])
 with tabs[0]:
     with st.form("churn_form"):
-        # --- Personal Info ---
+       
         with st.expander("Personal Info", expanded=True):
             col1, col2 = st.columns(2)
             with col1:
@@ -45,7 +45,7 @@ with tabs[0]:
                 dependents = st.selectbox("Has Dependents", ["No", "Yes"], index=0, help="Does the customer have dependents?")
             with col2:
                 tenure = st.slider("Tenure (months)", 0, 72, 24, help="Number of months the customer has stayed")
-        # --- Services ---
+      
         with st.expander("Services", expanded=True):
             col1, col2 = st.columns(2)
             with col1:
@@ -59,7 +59,7 @@ with tabs[0]:
                 tech = st.selectbox("Tech Support", ["No", "Yes"], index=0, help="Does the customer have tech support?")
                 stream_tv = st.selectbox("Streaming TV", ["No", "Yes"], index=0, help="Does the customer have streaming TV?")
                 stream_mov = st.selectbox("Streaming Movies", ["No", "Yes"], index=0, help="Does the customer have streaming movies?")
-        # --- Billing ---
+        
         with st.expander("Billing", expanded=True):
             col1, col2 = st.columns(2)
             with col1:
