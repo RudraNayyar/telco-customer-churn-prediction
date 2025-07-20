@@ -9,7 +9,7 @@ import os
 import xgboost as xgb
 import lightgbm as lgb
 
-# Load data
+
 X_train = pd.read_csv('data/X_train.csv')
 X_test = pd.read_csv('data/X_test.csv')
 y_train = pd.read_csv('data/y_train.csv').values.ravel()
@@ -18,7 +18,7 @@ y_test = pd.read_csv('data/y_test.csv').values.ravel()
 results = {}
 models = {}
 
-# Logistic Regression
+
 lr_model = LogisticRegression(max_iter=1000, random_state=42, class_weight='balanced')
 lr_model.fit(X_train, y_train)
 lr_preds = lr_model.predict(X_test)
@@ -32,7 +32,7 @@ results['Logistic Regression'] = {
 }
 models['Logistic Regression'] = lr_model
 
-# Random Forest
+
 rf_model = RandomForestClassifier(n_estimators=100, random_state=42, class_weight='balanced')
 rf_model.fit(X_train, y_train)
 rf_preds = rf_model.predict(X_test)
@@ -46,7 +46,7 @@ results['Random Forest'] = {
 }
 models['Random Forest'] = rf_model
 
-# XGBoost
+
 xgb_model = xgb.XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42, scale_pos_weight=(sum(y_train==0)/sum(y_train==1)))
 xgb_model.fit(X_train, y_train)
 xgb_preds = xgb_model.predict(X_test)
@@ -60,7 +60,7 @@ results['XGBoost'] = {
 }
 models['XGBoost'] = xgb_model
 
-# LightGBM
+
 lgb_model = lgb.LGBMClassifier(random_state=42, class_weight='balanced')
 lgb_model.fit(X_train, y_train)
 lgb_preds = lgb_model.predict(X_test)
@@ -74,14 +74,14 @@ results['LightGBM'] = {
 }
 models['LightGBM'] = lgb_model
 
-# Print results
+
 print('\nModel Results:')
 for name, metrics in results.items():
     print(f'\n{name}:')
     for metric, value in metrics.items():
         print(f'  {metric}: {value:.4f}')
 
-# Hyperparameter tuning for top 2 models
+
 top_models = sorted(results.items(), key=lambda x: x[1]['roc_auc'], reverse=True)[:2]
 tuned_models = {}
 for name, _ in top_models:
@@ -137,7 +137,7 @@ for name, _ in top_models:
     probs = tuned_models[name].predict_proba(X_test)[:, 1]
     print(f"  Tuned ROC-AUC: {roc_auc_score(y_test, probs):.4f}")
 
-# Save the best tuned model
+
 best_name = None
 best_model = None
 best_auc = 0
