@@ -2,6 +2,10 @@
 
 Predict whether a customer will churn (leave) a telecom service using machine learning. This project uses the Kaggle Telco Customer Churn dataset and provides an interactive web app built with Streamlit.
 
+## 🚀 Live Demo
+
+   [Try the app on Streamlit Cloud!](https://telco-customer-churn-prediction-mgqwyx2znqu8tmjaear77c.streamlit.app/)
+   
 ## 🚀 Features
 - Cleaned and preprocessed data
 - Multiple machine learning models (Logistic Regression, Random Forest, XGBoost, LightGBM)
