@@ -116,12 +116,15 @@ with tabs[0]:
         if prob > 0.7:
             st.markdown(f"<h2 style='color:red;'>🔴 High risk of churn! ({prob*100:.2f}%)</h2>", unsafe_allow_html=True)
             st.info("Suggested action: Offer a discount or personalized retention call.")
+            st.toast("⚠️ High risk detected! Take action.")
         elif prob > 0.4:
             st.markdown(f"<h2 style='color:orange;'>🟡 Medium risk of churn. ({prob*100:.2f}%)</h2>", unsafe_allow_html=True)
             st.info("Suggested action: Send a satisfaction survey or check-in email.")
+            st.snow()
         else:
             st.markdown(f"<h2 style='color:green;'>🟢 Low risk of churn. ({prob*100:.2f}%)</h2>", unsafe_allow_html=True)
             st.success("Suggested action: Thank the customer for loyalty!")
+            st.balloons()
         # Feature importance chart
         if hasattr(model, 'feature_importances_'):
             st.subheader("Feature Importances")
