@@ -21,7 +21,7 @@ Run the app locally or deploy to Streamlit Cloud to try it out!
 ## 🛠️ How to Run Locally
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/telco-customer-churn-prediction.git
+   git clone https://github.com/RudraNayyar/telco-customer-churn-prediction.git
    cd telco-customer-churn-prediction
    ```
 2. **Set up a virtual environment (optional but recommended):**
